@@ -51,6 +51,7 @@ while cap.isOpened():
                 color = (255, 0, 0)
                 thickness = 1
                 cv2.putText(img, text, org, font, font_scale, color, thickness)
+            total_person_count = len(boxes)
     except Exception as e:
         print(f"Error: {e}")
         pass
@@ -58,6 +59,7 @@ while cap.isOpened():
     cv2.imshow("Object Detection", img)
     if cv2.waitKey(5) & 0xFF == 27: # Press 'ESC' to exit
         break
-
+with open('person_count.txt', 'w') as f:
+    f.write(f"Total person count: {total_person_count}\n")
 cap.release()
 cv2.destroyAllWindows()
